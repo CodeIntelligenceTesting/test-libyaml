@@ -1,6 +1,10 @@
 
-cmake_minimum_required(VERSION 3.0)
-project (yaml C)
+cmake_minimum_required(VERSION 3.16)
+project (yaml C CXX)
+
+find_package(cifuzz NO_SYSTEM_ENVIRONMENT_PATH)
+enable_fuzz_testing()
+        
 
 set (YAML_VERSION_MAJOR 0)
 set (YAML_VERSION_MINOR 2)
@@ -158,3 +162,8 @@ install(
   FILES ${config_version_file}
   DESTINATION ${INSTALL_CMAKE_DIR} COMPONENT Development
   )
+
+# add_fuzz_test(my_fuzz_test my_fuzz_test.cpp)
+
+# target_link_libraries(my_fuzz_test yaml)
+add_subdirectory(cifuzz-spark)
